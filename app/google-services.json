@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "644611612339",
+    "firebase_url": "https://israeltravel-b29c7.firebaseio.com",
+    "project_id": "israeltravel-b29c7",
+    "storage_bucket": "israeltravel-b29c7.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:644611612339:android:33fdbe4e87be6acbd6dac6",
+        "android_client_info": {
+          "package_name": "com.example.proj"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "644611612339-8pk72f75v3g3v0ro266o43qfmjr65u95.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4faKn0d56CTWka1CQJJt8x7tbg96gjpc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "644611612339-8pk72f75v3g3v0ro266o43qfmjr65u95.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
