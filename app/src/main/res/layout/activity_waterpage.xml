@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#D1ECF8"
+    android:background="@drawable/tapet"
     tools:context=".PagesPackage.WaterPageActivity">
 
     <TextView
@@ -12,7 +12,7 @@
         android:layout_width="269dp"
         android:layout_height="55dp"
         android:text="TRIPS IN ISRAEL"
-        android:textColor="#1770B4"
+        android:textColor="@color/coloWhite"
         android:textSize="35sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -26,29 +26,47 @@
         android:id="@+id/btwater"
         android:layout_width="173dp"
         android:layout_height="147dp"
-        android:background="#ADD2E4"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/coloraGreen"
         android:text="With water"
-        android:textColor="#1770B4"
+        android:textColor="@color/coloWhite"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.067"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.53" />
 
     <Button
         android:id="@+id/btwithoutwater"
         android:layout_width="173dp"
         android:layout_height="147dp"
-        android:background="#ADD2E4"
+        android:background="@drawable/rounded_button"
+        android:backgroundTint="@color/coloraGreen"
         android:text="Without water"
-        android:textColor="#1770B4"
+        android:textColor="@color/coloWhite"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.932"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.421" />
+        app:layout_constraintVertical_bias="0.53" />
+
+    <TextView
+        android:id="@+id/tvexplain"
+        android:layout_width="285dp"
+        android:layout_height="108dp"
+        android:text="You have to choose whether you want a trip with the option of entering the water or without the option of entering the water"
+        android:textColor="@color/coloWhite"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.69"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.26" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

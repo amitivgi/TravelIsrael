@@ -17,5 +17,6 @@
         android:id="@+id/tvName"
         android:layout_width="328dp"
         android:layout_height="91dp"
+        android:textColor="@color/coloWhite"
         android:textSize="35sp" />
 </LinearLayout>

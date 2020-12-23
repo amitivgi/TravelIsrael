@@ -3,11 +3,13 @@ package com.example.proj.PagesPackage;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.proj.BroadcastReceiverPackage.BroadcastReceiverBattery;
 import com.example.proj.PagesPackage.WaterPageActivity;
 import com.example.proj.R;
 
@@ -23,6 +25,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         initUI();
         initListeners();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        IntentFilter iFilter = new IntentFilter();
+        iFilter.addAction(Intent.ACTION_BATTERY_LOW);
+        iFilter.addAction(Intent.ACTION_BATTERY_CHANGED);
+        registerReceiver(new BroadcastReceiverBattery(), iFilter);
     }
 
     private void initUI() {
