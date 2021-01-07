@@ -24,7 +24,7 @@ public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.View
     static class ViewHolder extends RecyclerView.ViewHolder {
 
         private TextView tvName;
-        private ImageView iv;
+        private ImageView iv, addToFavorites;
         private LinearLayout linear1;
 
         public ViewHolder(View itemView) {
@@ -32,6 +32,7 @@ public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.View
 
             tvName = itemView.findViewById(R.id.tvName);
             iv = itemView.findViewById(R.id.iv);
+            addToFavorites = itemView.findViewById(R.id.addToFavorites);
             linear1 = itemView.findViewById(R.id.linear1);
         }
     }
@@ -49,7 +50,7 @@ public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.View
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = mInflater.inflate(R.layout.custom, parent, false);
+        View view = mInflater.inflate(R.layout.adapter_all_travel, parent, false);
         return new ViewHolder(view);
     }
 
@@ -58,6 +59,12 @@ public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.View
         final TravelModel listData = list_data.get(position);
         holder.tvName.setText(listData.getLocationName());
         Picasso.get().load(listData.getImageUrl()).into(holder.iv);
+        holder.addToFavorites.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
         holder.linear1.setOnClickListener(v -> {
             Intent intent = new Intent(mInflater.getContext(), DataAllTravelActivity.class);
             intent.putExtra(mInflater.getContext().getString(R.string.dataFirestore), listData);

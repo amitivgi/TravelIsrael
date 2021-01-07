@@ -10,22 +10,10 @@ public class TravelModel implements Serializable {
     private String googleMapsUrl;
     private String imageUrl;
     private String locationName;
+    private String weatherUrl;
     private double lat;
     private double lng;
     private boolean water;
-
-    public TravelModel(String imageUrl, String locationName, String description,
-                       String equipmentList, String googleMapsUrl,
-                       double lat, double lng, boolean water) {
-        this.imageUrl = imageUrl;
-        this.locationName = locationName;
-        this.description = description;
-        this.equipmentList = equipmentList;
-        this.googleMapsUrl = googleMapsUrl;
-        this.lat = lat;
-        this.lng = lng;
-        this.water = water;
-    }
 
     public TravelModel() {
 
@@ -53,6 +41,14 @@ public class TravelModel implements Serializable {
 
     public void setLocationName(String locationName) {
         this.locationName = locationName;
+    }
+
+    public String getWeatherUrl() {
+        return weatherUrl;
+    }
+
+    public void setWeatherUrl(String weatherUrl) {
+        this.weatherUrl = weatherUrl;
     }
 
     public String getDescription() {

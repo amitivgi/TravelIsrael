@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">proj</string>
+    <string name="app_name">TravelIsrael</string>
     <string name="dataFirestore">dataFirestore</string>
     <string name="api_key_map">AIzaSyDc7oNJ8FQZc6xmDVEvj-vewU5-ohnlwR0</string>
 </resources>

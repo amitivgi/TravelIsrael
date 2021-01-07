@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
 import android.util.Log;
@@ -29,7 +30,7 @@ public class DataAllTravelActivity extends AppCompatActivity implements View.OnC
     private TextView locationName, equipmentList, description;
     private ImageView imageUrl;
     private TravelModel travelModel;
-    private Button btnBack, btnMap, btnSpeak, btnChooseLanguage, btnStopSpeak;
+    private Button btnBack, btnMap, btnSpeak, btnChooseLanguage, btnStopSpeak, btnWeather;
     private TextToSpeech t1;
     private Locale localeLanguage = Locale.US;
 
@@ -84,6 +85,7 @@ public class DataAllTravelActivity extends AppCompatActivity implements View.OnC
         btnSpeak = findViewById(R.id.btnSpeak);
         btnChooseLanguage = findViewById(R.id.btnChooseLanguage);
         btnStopSpeak = findViewById(R.id.btnStopSpeak);
+        btnWeather = findViewById(R.id.btnWeather);
 
         locationName.setText(travelModel.getLocationName());
         equipmentList.setText(travelModel.getEquipmentList().replace(",", "\n"));
@@ -99,6 +101,7 @@ public class DataAllTravelActivity extends AppCompatActivity implements View.OnC
         btnSpeak.setOnClickListener(this);
         btnChooseLanguage.setOnClickListener(this);
         btnStopSpeak.setOnClickListener(this);
+        btnWeather.setOnClickListener(this);
     }
 
     @Override
@@ -138,6 +141,11 @@ public class DataAllTravelActivity extends AppCompatActivity implements View.OnC
             });
             AlertDialog dialog = builder.create();
             dialog.show();
+        }
+        if (btnWeather.getId() == v.getId()) {
+            Uri uri = Uri.parse(travelModel.getWeatherUrl());
+            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+            startActivity(intent);
         }
     }
 

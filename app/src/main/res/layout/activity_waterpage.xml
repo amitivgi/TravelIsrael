@@ -27,7 +27,7 @@
         android:layout_width="173dp"
         android:layout_height="147dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/coloraGreen"
+        android:backgroundTint="@color/colorGreen"
         android:text="With water"
         android:textColor="@color/coloWhite"
         android:textStyle="bold"
@@ -43,7 +43,7 @@
         android:layout_width="173dp"
         android:layout_height="147dp"
         android:background="@drawable/rounded_button"
-        android:backgroundTint="@color/coloraGreen"
+        android:backgroundTint="@color/colorGreen"
         android:text="Without water"
         android:textColor="@color/coloWhite"
         android:textStyle="bold"
@@ -56,17 +56,18 @@
 
     <TextView
         android:id="@+id/tvexplain"
-        android:layout_width="285dp"
+        android:layout_width="match_parent"
         android:layout_height="108dp"
+        android:layout_margin="20dp"
+        android:gravity="center"
         android:text="You have to choose whether you want a trip with the option of entering the water or without the option of entering the water"
         android:textColor="@color/coloWhite"
         android:textSize="18sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.69"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.26" />
+        app:layout_constraintVertical_bias="0.197" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
