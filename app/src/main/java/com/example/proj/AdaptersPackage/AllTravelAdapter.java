@@ -38,12 +38,10 @@ public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.View
     }
 
     private List<TravelModel> list_data;
-    private Context context;
     private final LayoutInflater mInflater;
 
     public AllTravelAdapter(List<TravelModel> list_data, Context context) {
         this.list_data = list_data;
-        this.context = context;
         mInflater = LayoutInflater.from(context);
     }
 

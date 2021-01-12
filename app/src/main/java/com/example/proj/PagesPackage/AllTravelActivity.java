@@ -10,8 +10,8 @@ import android.widget.Toast;
 import com.example.proj.AdaptersPackage.AllTravelAdapter;
 import com.example.proj.R;
 import com.example.proj.ModelsPackage.TravelModel;
+import com.example.proj.UtilsPackage.FirebaseManager;
 import com.google.firebase.firestore.DocumentSnapshot;
-import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -19,11 +19,11 @@ import java.util.Objects;
 public class AllTravelActivity extends AppCompatActivity {
 
     private RecyclerView rv;
-    private ArrayList<TravelModel> travels = new ArrayList<>();
+    private final ArrayList<TravelModel> travels = new ArrayList<>();
     private AllTravelAdapter allPostAdapter;
-    private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private String typePlace;
     private boolean water;
+    private FirebaseManager firebaseManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,12 +41,13 @@ public class AllTravelActivity extends AppCompatActivity {
 
         typePlace = getIntent().getStringExtra("typePlace");
         water = getIntent().getBooleanExtra("water", true);
+
+        firebaseManager = new FirebaseManager();
+        firebaseManager.initFirestore();
     }
 
     private void retrieveData() {
-        db.collection(typePlace)
-                .whereEqualTo("water", water)
-                .get()
+        firebaseManager.getDataFirestore(typePlace, water)
                 .addOnCompleteListener(task -> {
                     if (task.isSuccessful()) {
                         travels.clear();

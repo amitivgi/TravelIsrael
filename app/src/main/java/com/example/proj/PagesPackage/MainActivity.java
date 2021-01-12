@@ -1,22 +1,19 @@
 package com.example.proj.PagesPackage;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.proj.BroadcastReceiverPackage.BroadcastReceiverBattery;
-import com.example.proj.PagesPackage.WaterPageActivity;
 import com.example.proj.R;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView tvTitle;
-    private Button btnD, btnM, btnTz;
+    private Button btnD, btnM, btnTz, btnAddTravel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,16 +35,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void initUI() {
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
-        btnD = (Button) findViewById(R.id.btnD);
-        btnM = (Button) findViewById(R.id.btnM);
-        btnTz = (Button) findViewById(R.id.btnTz);
+        btnD = findViewById(R.id.btnD);
+        btnM = findViewById(R.id.btnM);
+        btnTz = findViewById(R.id.btnTz);
+        btnAddTravel = findViewById(R.id.btnAddTravel);
     }
 
     private void initListeners() {
         btnD.setOnClickListener(this);
         btnM.setOnClickListener(this);
         btnTz.setOnClickListener(this);
+        btnAddTravel.setOnClickListener(this);
     }
 
     @Override
@@ -56,12 +54,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         if (btnD.getId() == v.getId()) {
             i.putExtra("typePlace", "travelsouth");
             startActivity(i);
-        } else if (btnM.getId() == v.getId()) {
+        }
+        if (btnM.getId() == v.getId()) {
             i.putExtra("typePlace", "travelcentral");
             startActivity(i);
-        } else if (btnTz.getId() == v.getId()) {
+        }
+        if (btnTz.getId() == v.getId()) {
             i.putExtra("typePlace", "travelnorth");
             startActivity(i);
+        }
+        if (btnAddTravel.getId() == v.getId()) {
+            Intent intent = new Intent(MainActivity.this, AddTravelActivity.class);
+            startActivity(intent);
         }
     }
 

@@ -6,13 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import com.example.proj.R;
 
 public class WaterPageActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private TextView tvTitle;
     private Button btnWater, btnWithoutWater;
     private String typePlace;
 
@@ -28,7 +26,6 @@ public class WaterPageActivity extends AppCompatActivity implements View.OnClick
     private void initUI() {
         typePlace = getIntent().getStringExtra("typePlace");
 
-        tvTitle = (TextView) findViewById(R.id.tvTitle);
         btnWater = (Button) findViewById(R.id.btwater);
         btnWithoutWater = (Button) findViewById(R.id.btwithoutwater);
     }
@@ -38,6 +35,7 @@ public class WaterPageActivity extends AppCompatActivity implements View.OnClick
         btnWithoutWater.setOnClickListener(this);
     }
 
+    @Override
     public void onClick(View v) { //change the main activity to all the button
         Intent intent = new Intent(WaterPageActivity.this, AllTravelActivity.class);
         if (btnWater.getId() == v.getId()) {
@@ -49,7 +47,6 @@ public class WaterPageActivity extends AppCompatActivity implements View.OnClick
             intent.putExtra("typePlace", typePlace);
             startActivity(intent);
         }
-
     }
 
 }
