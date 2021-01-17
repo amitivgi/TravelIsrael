@@ -1,24 +1,34 @@
 package com.example.proj.UtilsPackage;
 
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QuerySnapshot;
+import android.app.Activity;
+import android.content.Intent;
+import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.proj.AdaptersPackage.AllTravelAdapter;
+import com.example.proj.ModelsPackage.TravelModel;
+import com.example.proj.PagesPackage.MainActivity;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class FirebaseManager {
 
     private FirebaseFirestore firestore;
+    private AllTravelAdapter allPostAdapter;
 
     public void initFirestore() {
         firestore = FirebaseFirestore.getInstance();
     }
 
-    public Task<DocumentReference> addDocumentFirestore(String location, String description, String equipmentList,
-                                                        String imageUrl, double lat, double lng, String locationName,
-                                                        boolean water, String weatherUrl) {
+    public void addDocumentFirestore(Activity activity, String location, String description, String equipmentList,
+                                     String imageUrl, double lat, double lng, String locationName,
+                                     boolean water, String weatherUrl) {
         Map<String, Object> travel = new HashMap<>();
         travel.put("description", description);
         travel.put("equipmentList", equipmentList);
@@ -29,14 +39,41 @@ public class FirebaseManager {
         travel.put("water", water);
         travel.put("weatherUrl", weatherUrl);
 
-        return firestore.collection(location)
-                .add(travel);
+        firestore.collection(location)
+                .add(travel)
+                .addOnSuccessListener(aVoid -> {
+                    Intent intentAddInternetToMain = new Intent(activity, MainActivity.class);
+                    activity.startActivity(intentAddInternetToMain);
+
+                    activity.finish();
+                })
+                .addOnFailureListener(e -> Toast.makeText(activity, "Error: " + e, Toast.LENGTH_SHORT).show());
     }
 
-    public Task<QuerySnapshot> getDataFirestore(String typePlace, boolean water) {
-        return firestore.collection(typePlace)
+    public void getDataFirestore(Activity activity, ArrayList<TravelModel> travels, RecyclerView rv,
+                                 String typePlace, boolean water) {
+        firestore.collection(typePlace)
                 .whereEqualTo("water", water)
-                .get();
+                .get()
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        travels.clear();
+
+                        for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
+                            TravelModel note = doc.toObject(TravelModel.class);
+                            assert note != null;
+                            note.setId(doc.getId());
+                            travels.add(note);
+                        }
+
+                        allPostAdapter = new AllTravelAdapter(travels, activity);
+                        allPostAdapter.setData(travels);
+                        rv.setAdapter(allPostAdapter);
+                    } else {
+                        Toast.makeText(activity, "שגיאה בקבלת המידע", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
+
 
 }

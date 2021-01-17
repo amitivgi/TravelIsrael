@@ -56,18 +56,11 @@ public class AddTravelActivity extends AppCompatActivity implements View.OnClick
             alertDialogTravel();
         }
         if (btnSaveTravel.getId() == v.getId()) {
-            firebaseManager.addDocumentFirestore(locationTravel, description.getText().toString(),
+            firebaseManager.addDocumentFirestore(this, locationTravel, description.getText().toString(),
                     equipmentList.getText().toString(), imageUrl.getText().toString(),
                     Double.parseDouble(lat.getText().toString()), Double.parseDouble(lng.getText().toString()),
                     locationName.getText().toString(), Boolean.parseBoolean(water.getText().toString()),
-                    weatherUrl.getText().toString())
-                    .addOnSuccessListener(aVoid -> {
-                        Intent intentAddInternetToMain = new Intent(AddTravelActivity.this, MainActivity.class);
-                        startActivity(intentAddInternetToMain);
-
-                        finish();
-                    })
-                    .addOnFailureListener(e -> Toast.makeText(AddTravelActivity.this, "Error: " + e, Toast.LENGTH_SHORT).show());
+                    weatherUrl.getText().toString());
         }
     }
 
