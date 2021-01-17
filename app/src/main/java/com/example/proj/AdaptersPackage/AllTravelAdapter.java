@@ -17,43 +17,29 @@ import com.example.proj.PagesPackage.DataAllTravelActivity;
 import com.example.proj.R;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.ViewHolder> {
+public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapterViewHolder> {
 
-    static class ViewHolder extends RecyclerView.ViewHolder {
-
-        private TextView tvName;
-        private ImageView iv;
-        private LinearLayout linear1;
-
-        public ViewHolder(View itemView) {
-            super(itemView);
-
-            tvName = itemView.findViewById(R.id.tvName);
-            iv = itemView.findViewById(R.id.iv);
-            linear1 = itemView.findViewById(R.id.linear1);
-        }
-    }
-
-    private List<TravelModel> list_data;
+    private final ArrayList<TravelModel> list_data;
     private final LayoutInflater mInflater;
 
-    public AllTravelAdapter(List<TravelModel> list_data, Context context) {
+    public AllTravelAdapter(ArrayList<TravelModel> list_data, Context context) {
         this.list_data = list_data;
         mInflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
-    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AllTravelAdapterViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = mInflater.inflate(R.layout.adapter_all_travel, parent, false);
-        return new ViewHolder(view);
+        return new AllTravelAdapterViewHolder(view);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        final TravelModel listData = list_data.get(position);
+    public void onBindViewHolder(@NonNull AllTravelAdapterViewHolder holder, int position) {
+        TravelModel listData = list_data.get(position);
         holder.tvName.setText(listData.getLocationName());
         Picasso.get().load(listData.getImageUrl()).into(holder.iv);
 
@@ -62,11 +48,6 @@ public class AllTravelAdapter extends RecyclerView.Adapter<AllTravelAdapter.View
             intent.putExtra(mInflater.getContext().getString(R.string.dataFirestore), listData);
             mInflater.getContext().startActivity(intent);
         });
-    }
-
-    public void setData(List<TravelModel> names) {
-        list_data = names;
-        notifyDataSetChanged();
     }
 
     @Override

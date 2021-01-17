@@ -139,6 +139,7 @@ public class DataAllTravelActivity extends AppCompatActivity implements View.OnC
                         break;
                 }
             });
+
             AlertDialog dialog = builder.create();
             dialog.show();
         }
@@ -157,8 +158,9 @@ public class DataAllTravelActivity extends AppCompatActivity implements View.OnC
                         result == TextToSpeech.LANG_NOT_SUPPORTED) {
                     Log.e("error", "This Language is not supported");
                 }
-            } else
+            } else {
                 Log.e("error", "Initialization Failed!");
+            }
         });
     }
 

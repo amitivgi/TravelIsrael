@@ -34,6 +34,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         registerReceiver(new BroadcastReceiverBattery(), iFilter);
     }
 
+//    @Override
+//    protected void onDestroy() {
+//        super.onDestroy();
+//
+//        unregisterReceiver(new BroadcastReceiverBattery());
+//    }
+
     private void initUI() {
         btnD = findViewById(R.id.btnD);
         btnM = findViewById(R.id.btnM);

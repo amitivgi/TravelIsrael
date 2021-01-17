@@ -30,30 +30,27 @@ public class BroadcastReceiverBattery extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        assert action != null;
-        switch (action) {
-            case Intent.ACTION_BATTERY_LOW:
-                if (notificationManager == null) {
-                    notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+        if (Intent.ACTION_BATTERY_LOW.equals(action)) {
+            if (notificationManager == null) {
+                notificationManager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
+            }
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                int importance = NotificationManager.IMPORTANCE_HIGH;
+                NotificationChannel mChannel = notificationManager.getNotificationChannel(id);
+                if (mChannel == null) {
+                    mChannel = new NotificationChannel(id, title, importance);
+                    mChannel.enableVibration(true);
+                    mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
+                    notificationManager.createNotificationChannel(mChannel);
                 }
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    int importance = NotificationManager.IMPORTANCE_HIGH;
-                    NotificationChannel mChannel = notificationManager.getNotificationChannel(id);
-                    if (mChannel == null) {
-                        mChannel = new NotificationChannel(id, title, importance);
-                        mChannel.enableVibration(true);
-                        mChannel.setVibrationPattern(new long[]{100, 200, 300, 400, 500, 400, 300, 200, 400});
-                        notificationManager.createNotificationChannel(mChannel);
-                    }
-                    getBuilder(context, id, title);
-                } else {
-                    getBuilder(context, id, title);
-                }
-                Notification notification = builder.build();
-                notificationManager.notify(NOTIFY_ID, notification);
+                getBuilder(context, id, title);
+            } else {
+                getBuilder(context, id, title);
+            }
+            Notification notification = builder.build();
+            notificationManager.notify(NOTIFY_ID, notification);
 
-                Toast.makeText(context, "Your battery is low, Charge your phone :)", Toast.LENGTH_SHORT).show();
-                break;
+            Toast.makeText(context, "Your battery is low, Charge your phone :)", Toast.LENGTH_SHORT).show();
         }
     }
 

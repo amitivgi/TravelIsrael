@@ -15,12 +15,11 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.Objects;
 
 public class FirebaseManager {
 
     private FirebaseFirestore firestore;
-    private AllTravelAdapter allPostAdapter;
+    private AllTravelAdapter allTravelAdapter;
 
     public void initFirestore() {
         firestore = FirebaseFirestore.getInstance();
@@ -59,21 +58,19 @@ public class FirebaseManager {
                     if (task.isSuccessful()) {
                         travels.clear();
 
-                        for (DocumentSnapshot doc : Objects.requireNonNull(task.getResult())) {
-                            TravelModel note = doc.toObject(TravelModel.class);
-                            assert note != null;
-                            note.setId(doc.getId());
-                            travels.add(note);
+                        for (DocumentSnapshot doc : task.getResult()) {
+                            TravelModel travelModel = doc.toObject(TravelModel.class);
+                            assert travelModel != null;
+                            travelModel.setId(doc.getId());
+                            travels.add(travelModel);
                         }
 
-                        allPostAdapter = new AllTravelAdapter(travels, activity);
-                        allPostAdapter.setData(travels);
-                        rv.setAdapter(allPostAdapter);
+                        allTravelAdapter = new AllTravelAdapter(travels, activity);
+                        rv.setAdapter(allTravelAdapter);
                     } else {
                         Toast.makeText(activity, "שגיאה בקבלת המידע", Toast.LENGTH_SHORT).show();
                     }
                 });
     }
-
 
 }
